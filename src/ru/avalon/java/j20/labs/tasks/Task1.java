@@ -81,7 +81,7 @@ public class Task1 implements Task {
     {
         OutputStream stream = new FileOutputStream(file);
         Charset utf8 = Charset.forName("UTF8");
-        byte[] buffer = text.getBytes(utf8);
+        byte[] buffer = text.getBytes();
         stream.write(buffer);
         stream.flush();
         stream.close();
