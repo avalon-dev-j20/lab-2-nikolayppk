@@ -2,8 +2,9 @@ package ru.avalon.java.j20.labs.tasks;
 
 import ru.avalon.java.j20.labs.Task;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
+
 
 /**
  * Задание №1
@@ -54,7 +55,18 @@ public class Task1 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private String read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
+        InputStream stream = new FileInputStream(file);
+        ByteArrayOutputStream memory = new ByteArrayOutputStream();
+        byte[] buffer = new byte[10];
+        int len;
+        while((len = stream.read(buffer)) != -1)
+        {
+            memory.write(buffer, 0, len);
+        }
+        String result = memory.toString();
+        memory.close();
+        stream.close();
+        return result;
     }
 
     /**
@@ -65,7 +77,14 @@ public class Task1 implements Task {
      * @param text текст
      * @throws IOException в случае ошибок ввода-вывода.
      */
-    private void write(File file, String text) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
+    private void write(File file, String text) throws IOException 
+    {
+        OutputStream stream = new FileOutputStream(file);
+        Charset utf8 = Charset.forName("UTF8");
+        byte[] buffer = text.getBytes(utf8);
+        stream.write(buffer);
+        stream.flush();
+        stream.close();
+        
     }
 }
