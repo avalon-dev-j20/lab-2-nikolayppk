@@ -55,19 +55,18 @@ public class Task1 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private String read(File file) throws IOException {
-        InputStream stream = new FileInputStream(file);
-        ByteArrayOutputStream memory = new ByteArrayOutputStream();
-        byte[] buffer = new byte[10];
-        int len;
-        while((len = stream.read(buffer)) != -1)
-        {
-            memory.write(buffer, 0, len);
+        try(InputStream stream = new FileInputStream(file);
+        ByteArrayOutputStream memory = new ByteArrayOutputStream())
+        {    
+            byte[] buffer = new byte[10];
+            int len;
+            while((len = stream.read(buffer)) != -1)
+            {
+                memory.write(buffer, 0, len);
+            }
+            String result = memory.toString();      
+            return result;
         }
-        String result = memory.toString();
-        memory.close();
-        stream.close();
-       
-        return result;
     }
 
     /**
@@ -80,12 +79,12 @@ public class Task1 implements Task {
      */
     private void write(File file, String text) throws IOException 
     {
-        OutputStream stream = new FileOutputStream(file);
-        Charset utf8 = Charset.forName("UTF8");
-        byte[] buffer = text.getBytes();
-        stream.write(buffer);
-        stream.flush();
-        stream.close();
+        try (OutputStream stream = new FileOutputStream(file)) {
+            Charset utf8 = Charset.forName("UTF8");
+            byte[] buffer = text.getBytes(utf8);
+            stream.write(buffer);
+            stream.flush();
+        }
         
     }
 }

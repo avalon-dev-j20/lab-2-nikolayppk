@@ -1,6 +1,7 @@
 package ru.avalon.java.j20.labs.tasks;
 
 import java.io.*;
+import java.util.stream.IntStream;
 
 import ru.avalon.java.j20.labs.Task;
 
@@ -56,15 +57,14 @@ public class Task2 implements Task {
     {
         StringBuilder builder = new StringBuilder();
         char[] buffer = new char[10];
-            try (InputStream stream = new FileInputStream(file);
-            Reader reader = new InputStreamReader(stream))
+        try (Reader reader = new FileReader(file))
        {
-           int len;
-           while ((len = reader.read(buffer)) != -1)
+        int len;
+        while ((len = reader.read(buffer)) != -1)
            {
-               builder.append(builder, 0, len);
+           builder.append(buffer, 0, len);
            }
-           return builder.toString();
+        return builder.toString();
        }
     }
 
@@ -78,5 +78,10 @@ public class Task2 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, String text) throws IOException {
+        try(Writer write = new FileWriter(file))
+        {
+        write.write(text);
+        write.flush();
+        }
     }
 }
