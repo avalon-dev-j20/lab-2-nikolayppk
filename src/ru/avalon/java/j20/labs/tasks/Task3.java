@@ -6,6 +6,7 @@ import ru.avalon.java.j20.labs.Task;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * Задание №3
@@ -76,10 +77,16 @@ public class Task3 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, Collection<String> collection) throws IOException {
-         try(Writer write = new PrintWriter(file))
-        {
-       write.append((CharSequence) collection, 1, 1);
-        write.flush();
+         try(PrintWriter write = new PrintWriter(file))
+        {  
+             for (String i : collection) {
+                 write.println(i);
+             }
+           write.flush();
+        }  
+            
+        
     }
 }
-}
+
+
