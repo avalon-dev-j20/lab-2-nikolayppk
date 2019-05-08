@@ -77,11 +77,12 @@ public class Task3 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, Collection<String> collection) throws IOException {
-         try(PrintWriter write = new PrintWriter(file))
+        try(PrintWriter write = new PrintWriter(file))
         {  
-             for (String i : collection) {
-                 write.println(i);
-             }
+            for (String i : collection)
+            {
+                write.println(i);
+            }
            write.flush();
         }  
             
