@@ -66,6 +66,7 @@ public class Task1 implements Task {
         String result = memory.toString();
         memory.close();
         stream.close();
+       
         return result;
     }
 

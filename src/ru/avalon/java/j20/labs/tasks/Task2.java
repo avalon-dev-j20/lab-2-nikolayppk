@@ -1,13 +1,8 @@
 package ru.avalon.java.j20.labs.tasks;
 
-import ru.avalon.java.j20.labs.Task;
+import java.io.*;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import ru.avalon.java.j20.labs.Task;
 
 /**
  * Задание №2
@@ -59,13 +54,11 @@ public class Task2 implements Task {
      */
     private String read(File file) throws IOException
     {
-       
-       
-       try (InputStream stream = new FileInputStream(file);
-               Reader reader = new InputStreamReader(stream))
+        StringBuilder builder = new StringBuilder();
+        char[] buffer = new char[10];
+            try (InputStream stream = new FileInputStream(file);
+            Reader reader = new InputStreamReader(stream))
        {
-           StringBuilder builder = new StringBuilder();
-           char[] buffer = new char[10];
            int len;
            while ((len = reader.read(buffer)) != -1)
            {
@@ -74,7 +67,7 @@ public class Task2 implements Task {
            return builder.toString();
        }
     }
-}
+
 
     /**
      * Выполняет запись текстоых данных в файл в текстовом
@@ -85,6 +78,5 @@ public class Task2 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, String text) throws IOException {
-            
     }
 }
