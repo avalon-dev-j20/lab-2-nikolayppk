@@ -3,10 +3,7 @@ package ru.avalon.java.j20.labs.tasks;
 import java.io.BufferedReader;
 import ru.avalon.java.j20.labs.Task;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -79,6 +76,10 @@ public class Task3 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, Collection<String> collection) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
+         try(Writer write = new PrintWriter(file))
+        {
+       write.append((CharSequence) collection, 1, 1);
+        write.flush();
     }
+}
 }
