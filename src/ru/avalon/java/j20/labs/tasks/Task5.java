@@ -12,12 +12,19 @@ import java.util.ResourceBundle;
  * <p>Тема: "Потоковый ввод-вывод. Чтение локализованных ресурсов".
  */
 public class Task5 implements Task {
+    
+    
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void run() throws IOException {
+        Locale local = new Locale("eng"); 
+        String path = "resources.strings.titles";
+        ResourceBundle titles = read(path);
+        
+        
         /*
          * TODO(Студент): Выполнить задание №5
          *
@@ -41,7 +48,8 @@ public class Task5 implements Task {
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path) {
-        throw new UnsupportedOperationException("Not implement yet!");
+        ResourceBundle titles = ResourceBundle.getBundle(path);
+        return titles;
     }
 
     /**
@@ -51,6 +59,7 @@ public class Task5 implements Task {
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path, Locale locale) {
-        throw new UnsupportedOperationException("Not implement yet!");
+        ResourceBundle titles = ResourceBundle.getBundle(path, locale);
+        return titles;
     }
 }

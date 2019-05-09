@@ -19,7 +19,7 @@ public class Application {
             new Task2(),
             new Task3(),
             new Task4(),
-           //new Task5(),
+            new Task5(),
            // new Task6()
     };
 
