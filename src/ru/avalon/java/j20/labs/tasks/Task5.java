@@ -20,7 +20,7 @@ public class Task5 implements Task {
      */
     @Override
     public void run() throws IOException {
-        Locale local = new Locale("eng"); 
+        Locale local = new Locale("ru"); 
         String path = "resources.strings.titles";
         ResourceBundle titles = read(path);
         
